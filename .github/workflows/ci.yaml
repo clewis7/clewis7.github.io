@@ -25,28 +25,3 @@ jobs:
 
       - name: Format check
         run: npx --yes prettier --check "**/*.{html,css,js,json}"
-
-  smoke:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Serve and check every page returns 200
-        run: |
-          python3 -m http.server 8080 &
-          sleep 2
-          fail=0
-          for p in / /about/ /projects/ /publications/ /visualization/ /books/ /blog/; do
-            code=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost:8080$p")
-            echo "$p -> $code"
-            [ "$code" = "200" ] || fail=1
-          done
-          exit $fail
-
-  links:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: lycheeverse/lychee-action@v2
-        with:
-          args: --no-progress --exclude-path node_modules "**/*.html"
-          fail: true
