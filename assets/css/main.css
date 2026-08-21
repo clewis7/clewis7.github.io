@@ -1,0 +1,173 @@
+:root {
+  /* Palette: cool paper, blue-black ink, deep teal, plum accent */
+  --paper: #e9ecee;
+  --card: #ffffff;
+  --ink: #101318;
+  --muted: #59626e;
+  --line: #c9d0d6;
+  --accent: #16545e;
+  --accent-soft: #1d6b77;
+  --spark: #8a2e5d;
+
+  /* Type */
+  --display: "Archivo", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Rhythm */
+  --gutter: 1.5rem;
+  --measure: 68rem;
+  --shell-y: 1.1rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --gutter: 2.5rem;
+  }
+}
+
+/* ---- Reset ----------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh; /* fallback */
+  min-height: 100dvh; /* ignores mobile URL-bar collapse */
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  color: var(--spark);
+}
+
+:focus-visible {
+  outline: 2px solid var(--spark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Header 
+   ============================================================ */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: var(--shell-y) var(--gutter);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem 1.6rem;
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.nav a {
+  padding: 0.15rem 0;
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid transparent;
+}
+
+.nav a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--line);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 500;
+  border-bottom-color: var(--spark);
+}
+
+@media (max-width: 34rem) {
+  .nav {
+    gap: 0.4rem 1.1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* ============================================================
+   Main
+   ============================================================ */
+.shell {
+  flex: 1;
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 3rem var(--gutter) 5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.page-title {
+  margin: 0 0 1rem;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 6vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.footer {
+  padding: 2rem var(--gutter);
+  border-top: 1px solid var(--line);
+}
+
+.footer__fine {
+  max-width: var(--measure);
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
