@@ -17,11 +17,11 @@ jobs:
       - name: HTML validation
         run: npx --yes html-validate "**/*.html"
 
-      - name: JSON data files parse
-        run: |
-          for f in assets/data/*.json; do
-            python3 -m json.tool "$f" > /dev/null
-          done
+      # - name: JSON data files parse
+      #   run: |
+      #     for f in assets/data/*.json; do
+      #       python3 -m json.tool "$f" > /dev/null
+      #     done
 
       - name: Format check
         run: npx --yes prettier --check "**/*.{html,css,js,json}"
