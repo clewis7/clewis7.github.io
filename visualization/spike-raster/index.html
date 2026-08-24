@@ -27,18 +27,42 @@
     <!-- ===== /HEADER ===== -->
 
     <main class="shell" id="main">
-      <h1 class="page-title">Scientific Visualization</h1>
+      <a class="backlink" href="/visualization/">&larr; All visualizations</a>
 
-      <p class="viz__intro">
-        A collection of visualizations built with
-        <a href="https://github.com/fastplotlib/fastplotlib">fastplotlib</a>.
-        These are recordings for now &mdash; eventually I'd like to run them
-        live in the browser via Pyodide.
+      <p class="eyebrow">
+        Neuropixels &middot; electrophysiology &middot; real-time
+      </p>
+      <h1 class="page-title">Streaming Neuropixels data live</h1>
+
+      <p class="viz-detail__lede">
+        384 channels at 30kHz, plotted live during acquisition — with multi-unit
+        activity thresholded in the same pass, so spikes appear as they happen.
       </p>
 
-      <div id="viz-grid" class="viz-grid">
-        <p class="viz__status">Loading&hellip;</p>
-      </div>
+      <!-- <figure class="viz-detail__media">
+        <video
+          src="/assets/video/zero-copy-tensors.mp4"
+          poster="/assets/img/viz/zero-copy-tensors.jpg"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        ></video>
+        <figcaption>
+          Live activation view during a nanoGPT training run on Shakespeare.
+        </figcaption>
+      </figure> -->
+
+      <figure class="viz-detail__media">
+        <div class="media-placeholder">
+          <span>Video coming soon</span>
+        </div>
+        <figcaption>
+          Live acquisition from a 384-channel Neuropixels probe, with multi-unit
+          activity as rasters and smoothed spikes
+        </figcaption>
+      </figure>
     </main>
 
     <script src="/assets/js/viz.js" defer></script>
