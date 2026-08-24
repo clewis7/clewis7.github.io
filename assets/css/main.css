@@ -171,3 +171,139 @@ a:hover {
   letter-spacing: 0.02em;
   color: var(--muted);
 }
+
+/* ============================================================
+   Homepage intro
+   ============================================================ */
+.intro {
+  display: grid;
+  gap: 2.5rem 3.5rem;
+  align-items: start;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 52rem) {
+  .intro {
+    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  }
+}
+
+/* ---- Left column ----------------------------------------- */
+
+.portrait {
+  width: 100%;
+  max-width: 15rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--card);
+  /* soft ring instead of a hard border */
+  box-shadow:
+    0 0 0 1px var(--line),
+    0 0 0 9px color-mix(in srgb, var(--accent) 7%, transparent);
+}
+
+.intro__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* was flex-start */
+  gap: 1.1rem;
+}
+
+.intro__name {
+  margin: 0.35rem 0 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3.4vw, 2.15rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-align: center; /* add */
+}
+
+.social {
+  display: flex;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--muted);
+  border-radius: 50%;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.social a:hover {
+  color: var(--spark);
+  background: color-mix(in srgb, var(--spark) 10%, transparent);
+}
+
+.social svg {
+  width: 2.05rem;
+  height: 2.05rem;
+}
+
+/* ---- Right column ---------------------------------------- */
+.intro__body {
+  max-width: 42rem;
+}
+
+.lede {
+  margin: 0 0 1.4rem;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.intro__body p {
+  margin: 0 0 1.1rem;
+  color: var(--muted);
+}
+
+/* ---- Currently ------------------------------------------- */
+.now {
+  display: grid;
+  gap: 0;
+  margin: 2rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.now > div {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+}
+
+.now dt {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 0.15rem;
+}
+
+.now dd {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 34rem) {
+  .now > div {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
