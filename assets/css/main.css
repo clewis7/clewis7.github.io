@@ -307,3 +307,234 @@ a:hover {
     gap: 0.15rem;
   }
 }
+
+/* ============================================================
+   CV / Career page
+   ============================================================ */
+.cv-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.cv-head__sub {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn:hover {
+  color: var(--paper);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---- Sections -------------------------------------------- */
+.cv-section {
+  margin-top: 3rem;
+}
+
+.cv-section__title {
+  margin: 0 0 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ---- Timeline entries ------------------------------------ */
+.cv-entry {
+  display: grid;
+  gap: 0.35rem 1.75rem;
+  padding: 0 0 1.5rem;
+}
+
+@media (min-width: 44rem) {
+  .cv-entry {
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+  }
+
+  .cv-entry__body {
+    padding-left: 1.75rem;
+    border-left: 1px solid var(--line);
+  }
+}
+
+.cv-entry__date {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--muted);
+  padding-top: 0.2rem;
+}
+
+.cv-entry__role {
+  margin: 0 0 0.2rem;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.cv-entry__org {
+  margin: 0;
+  font-weight: 500;
+}
+
+.cv-entry__meta {
+  margin: 0.15rem 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.cv-entry__desc {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* ---- Tag pills ------------------------------------------- */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+}
+
+/* ---- Skills ---------------------------------------------- */
+.skills {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.skills > div {
+  display: grid;
+  gap: 0.15rem 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+}
+
+@media (min-width: 44rem) {
+  .skills > div {
+    grid-template-columns: 10rem minmax(0, 1fr);
+  }
+}
+
+.skills dt {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 0.15rem;
+}
+
+.skills dd {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ---- Awards ---------------------------------------------- */
+.awards {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.awards li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+}
+
+.awards__star {
+  color: var(--spark);
+}
+
+.awards__name {
+  font-weight: 500;
+}
+
+.awards__when {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ---- Publications ---------------------------------------- */
+.pub {
+  display: grid;
+  gap: 0.35rem 1.75rem;
+  padding: 0 0 1.4rem;
+}
+
+@media (min-width: 44rem) {
+  .pub {
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+  }
+}
+
+.pub__venue {
+  margin: 0;
+  padding-top: 0.15rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--spark);
+}
+
+.pub__title {
+  margin: 0 0 0.25rem;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.pub__authors {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
