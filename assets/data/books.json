@@ -1,0 +1,185 @@
+[
+  {
+    "year": "2026",
+    "books": [
+      {
+        "title": "The Wager",
+        "author": "David Grann",
+        "isbn": "0385534264",
+        "goodreads": "https://www.goodreads.com/book/show/75663998-the-wager"
+      },
+      {
+        "title": "Piranesi",
+        "author": "Susanna Clarke",
+        "isbn": "1635575636",
+        "goodreads": "https://www.goodreads.com/book/show/50202953-piranesi"
+      }
+    ]
+  },
+  {
+    "year": "2025",
+    "books": [
+      {
+        "title": "Tomorrow, and Tomorrow, and Tomorrow",
+        "author": "Gabrielle Zevin",
+        "isbn": "0593321200",
+        "goodreads": "https://www.goodreads.com/book/show/58784475"
+      }
+    ]
+  },
+  {
+    "year": "2024",
+    "books": [
+      {
+        "title": "The Great Alone",
+        "author": "Kristin Hannah",
+        "isbn": "0312577230",
+        "goodreads": "https://www.goodreads.com/book/show/34912895-the-great-alone"
+      },
+      {
+        "title": "The Nightingale",
+        "author": "Kristin Hannah",
+        "isbn": "0312577222",
+        "goodreads": "https://www.goodreads.com/book/show/21853621-the-nightingale"
+      },
+      {
+        "title": "The House in the Cerulean Sea",
+        "author": "T.J. Klune",
+        "isbn": "1250217318",
+        "goodreads": "https://www.goodreads.com/book/show/45047384-the-house-in-the-cerulean-sea"
+      },
+      {
+        "title": "The Lion Women of Tehran",
+        "author": "Marjan Kamali",
+        "isbn": "1668036584",
+        "goodreads": "https://www.goodreads.com/book/show/199798217-the-lion-women-of-tehran"
+      },
+      {
+        "title": "The Book of Doors",
+        "author": "Gareth Brown",
+        "isbn": "0063323982",
+        "goodreads": "https://www.goodreads.com/book/show/156480764-the-book-of-doors"
+      },
+      {
+        "title": "The Briar Club",
+        "author": "Kate Quinn",
+        "isbn": "0063244748",
+        "goodreads": "https://www.goodreads.com/book/show/181110045-the-briar-club"
+      },
+      {
+        "title": "The Alice Network",
+        "author": "Kate Quinn",
+        "isbn": "0062654195",
+        "goodreads": "https://www.goodreads.com/book/show/32051912-the-alice-network"
+      },
+      {
+        "title": "The Wedding People",
+        "author": "Alison Espach",
+        "isbn": "1250899575",
+        "goodreads": "https://www.goodreads.com/book/show/198902277-the-wedding-people"
+      },
+      {
+        "title": "The Only One Left",
+        "author": "Riley Sager",
+        "isbn": "0593183223",
+        "goodreads": "https://www.goodreads.com/book/show/62703226-the-only-one-left"
+      },
+      {
+        "title": "The Lincoln Highway",
+        "author": "Amor Towles",
+        "isbn": "0735222355",
+        "goodreads": "https://www.goodreads.com/book/show/57109107-the-lincoln-highway"
+      },
+      {
+        "title": "Rules of Civility",
+        "author": "Amor Towles",
+        "isbn": "0143121162",
+        "goodreads": "https://www.goodreads.com/book/show/10054335-rules-of-civility"
+      },
+      {
+        "title": "The Midnight Feast",
+        "author": "Lucy Foley",
+        "isbn": "0063003104",
+        "goodreads": "https://www.goodreads.com/book/show/199743738-the-midnight-feast"
+      },
+      {
+        "title": "Table for Two",
+        "author": "Amor Towles",
+        "isbn": "0593296370",
+        "goodreads": "https://www.goodreads.com/book/show/195474144-table-for-two"
+      },
+      {
+        "title": "Listen for the Lie",
+        "author": "Amy Tintera",
+        "isbn": "1250880319",
+        "goodreads": "https://www.goodreads.com/book/show/127279000-listen-for-the-lie"
+      },
+      {
+        "title": "The Five-Star Weekend",
+        "author": "Elin Hilderbrand",
+        "isbn": "0316258776",
+        "goodreads": "https://www.goodreads.com/book/show/62873996-the-five-star-weekend"
+      },
+      {
+        "title": "House of Earth and Blood",
+        "author": "Sarah J. Maas",
+        "isbn": "1635574048",
+        "goodreads": "https://www.goodreads.com/book/show/44778083-house-of-earth-and-blood"
+      },
+      {
+        "title": "House of Sky and Breath",
+        "author": "Sarah J. Maas",
+        "isbn": "1408884429",
+        "goodreads": "https://www.goodreads.com/book/show/40132775-house-of-sky-and-breath"
+      },
+      {
+        "title": "House of Flame and Shadow",
+        "author": "Sarah J. Maas",
+        "isbn": "1681193094",
+        "goodreads": "https://www.goodreads.com/book/show/52857700-house-of-flame-and-shadow"
+      },
+      {
+        "title": "The Seven Year Slip",
+        "author": "Ashley Poston",
+        "isbn": "059333650X",
+        "goodreads": "https://www.goodreads.com/book/show/199834495-the-seven-year-slip"
+      },
+      {
+        "title": "Funny Story",
+        "author": "Emily Henry",
+        "isbn": "9780593441282",
+        "goodreads": "https://www.goodreads.com/book/show/194802722-funny-story"
+      },
+      {
+        "title": "The Spectacular",
+        "author": "Fiona Davis",
+        "isbn": "9780593184042",
+        "goodreads": "https://www.goodreads.com/book/show/62588481-the-spectacular"
+      },
+      {
+        "title": "First Lie Wins",
+        "author": "Ashley Elston",
+        "isbn": "0593492919",
+        "goodreads": "https://www.goodreads.com/book/show/164444179-first-lie-wins"
+      },
+      {
+        "title": "Kill For Me, Kill For You",
+        "author": "Steve Cavanagh",
+        "isbn": "1668049341",
+        "goodreads": "https://www.goodreads.com/book/show/176451879-kill-for-me-kill-for-you"
+      },
+      {
+        "title": "The Familiar",
+        "author": "Leigh Bardugo",
+        "isbn": "125088425X",
+        "goodreads": "https://www.goodreads.com/book/show/133286777-the-familiar"
+      },
+      {
+        "title": "This Summer Will Be Different",
+        "author": "Carley Fortune",
+        "isbn": "9780593638880",
+        "goodreads": "https://www.goodreads.com/book/show/197577126-this-summer-will-be-different"
+      }
+    ]
+  }
+]
