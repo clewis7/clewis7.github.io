@@ -1,18 +1,96 @@
 [
   {
-    "year": "2026",
+    "year": "2026 (so far)",
     "books": [
       {
-        "title": "The Wager",
-        "author": "David Grann",
-        "isbn": "0385534264",
-        "goodreads": "https://www.goodreads.com/book/show/75663998-the-wager"
+        "title": "Heart the Lover",
+        "author": "Lily King",
+        "isbn": "0802165176",
+        "goodreads": "https://www.goodreads.com/en/book/show/228110489-heart-the-lover"
       },
       {
-        "title": "Piranesi",
-        "author": "Susanna Clarke",
-        "isbn": "1635575636",
-        "goodreads": "https://www.goodreads.com/book/show/50202953-piranesi"
+        "title": "Writers & Lovers",
+        "author": "Lily King",
+        "isbn": "0802148549",
+        "goodreads": "https://www.goodreads.com/en/book/show/45289222-writers-lovers"
+      },
+      {
+        "title": "A Man Called Ove",
+        "author": "Fredrik Backman",
+        "isbn": "1476738025",
+        "goodreads": "https://www.goodreads.com/en/book/show/18774964-a-man-called-ove"
+      },
+      {
+        "title": "The Lies of Locke Lamora",
+        "author": "Scott Lynch",
+        "isbn": "0553804677",
+        "goodreads": "https://www.goodreads.com/en/book/show/29588376-the-lies-of-locke-lamora"
+      },
+      {
+        "title": "When the Cranes Fly South",
+        "author": "Lisa Ridzén",
+        "cover": "/assets/img/cranes.jpg",
+        "goodreads": "https://www.goodreads.com/book/show/221251872-when-the-cranes-fly-south"
+      },
+      {
+        "title": "The Correspondent",
+        "author": "Virginia Evans",
+        "isbn": "0593798430",
+        "goodreads": "https://www.goodreads.com/en/book/show/223001257-the-correspondent"
+      },
+      {
+        "title": "The Guncle",
+        "author": "Steven Rowley",
+        "isbn": "0525542280",
+        "goodreads": "https://www.goodreads.com/en/book/show/54508798-the-guncle"
+      },
+      {
+        "title": "Theo of Golden",
+        "author": "Allen Levi",
+        "isbn": "1668236516",
+        "goodreads": "https://www.goodreads.com/en/book/show/242376245-theo-of-golden"
+      },
+      {
+        "title": "Yesteryear",
+        "author": "Caro Claire Burke",
+        "isbn": "059380421X",
+        "goodreads": "https://www.goodreads.com/book/show/238226942-yesteryear"
+      },
+      {
+        "title": "This Book Made Me Think of You",
+        "author": "Libby Page",
+        "cover": "/assets/img/tbmmtoy.jpg",
+        "goodreads": "https://www.goodreads.com/en/book/show/232794526-this-book-made-me-think-of-you"
+      },
+      {
+        "title": "Whistler",
+        "author": "Ann Patchett",
+        "isbn": "0063511630",
+        "goodreads": "https://www.goodreads.com/en/book/show/242693052-whistler"
+      },
+      {
+        "title": "The Shampoo Effect",
+        "author": "Jenny Jackson",
+        "cover": "/assets/img/shampoo.jpg",
+        "goodreads": "https://www.goodreads.com/en/book/show/242252957-the-shampoo-effect"
+      },
+      {
+        "title": "Dark Matter",
+        "author": "Blake Crouch",
+        "isbn": "1101904224",
+        "goodreads": "https://www.goodreads.com/en/book/show/27833670-dark-matter"
+      },
+      {
+        "title": "Mistborn: The Final Empire",
+        "author": "Brandon Sanderson",
+        "isbn": "9780765311788",
+        "goodreads": "https://www.goodreads.com/en/book/show/68428.Mistborn"
+      },
+      {
+        "title": "A Fortune of Sand",
+        "author": "Ruta Sepetys",
+        "cover": "/assets/img/fortune-sand.jpg",
+        "goodreads": "https://www.goodreads.com/en/book/show/241124750-a-fortune-of-sand"
       }
     ]
   },
@@ -20,10 +98,226 @@
     "year": "2025",
     "books": [
       {
-        "title": "Tomorrow, and Tomorrow, and Tomorrow",
-        "author": "Gabrielle Zevin",
-        "isbn": "0593321200",
-        "goodreads": "https://www.goodreads.com/book/show/58784475"
+        "title": "The God of the Woods",
+        "author": "Liz Moore",
+        "isbn": "0593418913",
+        "goodreads": "https://www.goodreads.com/book/show/199700434-the-god-of-the-woods"
+      },
+      {
+        "title": "The Rose Code",
+        "author": "Kate Quinn",
+        "isbn": "006305941X",
+        "goodreads": "https://www.goodreads.com/book/show/53914938-the-rose-code"
+      },
+      {
+        "title": "The Favorites",
+        "author": "Layne Fargo",
+        "isbn": "0593732049",
+        "goodreads": "https://www.goodreads.com/book/show/211399784-the-favorites"
+      },
+      {
+        "title": "Red Rising",
+        "author": "Pierce Brown",
+        "isbn": "0345539796",
+        "goodreads": "https://www.goodreads.com/book/show/15839976-red-rising"
+      },
+      {
+        "title": "Morning Star",
+        "author": "Pierce Brown",
+        "isbn": "0345539869",
+        "goodreads": "https://www.goodreads.com/book/show/18966806-morning-star"
+      },
+      {
+        "title": "Golden Son",
+        "author": "Pierce Brown",
+        "isbn": "0345539834",
+        "goodreads": "https://www.goodreads.com/book/show/18966819-golden-son"
+      },
+      {
+        "title": "Cloud Cuckoo Land",
+        "author": "Anthony Doerr",
+        "isbn": "1982168439",
+        "goodreads": "https://www.goodreads.com/book/show/56783258-cloud-cuckoo-land"
+      },
+      {
+        "title": "Piranesi",
+        "author": "Susanna Clarke",
+        "isbn": "1635577802",
+        "goodreads": "https://www.goodreads.com/book/show/50202953-piranesi"
+      },
+      {
+        "title": "Midnight in the Garden of Good and Evil",
+        "author": "John Berendt",
+        "isbn": "0679751521",
+        "goodreads": "https://www.goodreads.com/book/show/386187.Midnight_in_the_Garden_of_Good_and_Evil"
+      },
+      {
+        "title": "The Rachel Incident",
+        "author": "Caroline O'Donoghue",
+        "cover": "/assets/img/rachel-incident.jpg",
+        "goodreads": "https://www.goodreads.com/book/show/63094957-the-rachel-incident"
+      },
+      {
+        "title": "Neverwhere",
+        "author": "Neil Gaiman",
+        "isbn": "0060557818",
+        "goodreads": "https://www.goodreads.com/book/show/14497.Neverwhere"
+      },
+      {
+        "title": "The Girl with the Dragon Tattoo",
+        "author": "Stieg Larsson",
+        "isbn": "0307454541",
+        "goodreads": "https://www.goodreads.com/book/show/2429135.The_Girl_With_the_Dragon_Tattoo"
+      },
+      {
+        "title": "The Girl Who Played with Fire",
+        "author": "Stieg Larsson",
+        "isbn": "0307269981",
+        "goodreads": "https://www.goodreads.com/book/show/5060378-the-girl-who-played-with-fire"
+      },
+      {
+        "title": "The Girl Who Kicked the Hornet's Nest",
+        "author": "Stieg Larsson",
+        "isbn": "030726999X",
+        "goodreads": "https://www.goodreads.com/book/show/6892870-the-girl-who-kicked-the-hornet-s-nest"
+      },
+      {
+        "title": "The Women",
+        "author": "Kristin Hannah",
+        "isbn": "1250178630",
+        "goodreads": "https://www.goodreads.com/book/show/127305853-the-women"
+      },
+      {
+        "title": "The Four Winds",
+        "author": "Kristin Hannah",
+        "isbn": "1250178606",
+        "goodreads": "https://www.goodreads.com/book/show/53138081-the-four-winds"
+      },
+      {
+        "title": "One Golden Summer",
+        "author": "Carley Fortune",
+        "isbn": "0593638913",
+        "goodreads": "https://www.goodreads.com/book/show/217245639-one-golden-summer"
+      },
+      {
+        "title": "Ninth House",
+        "author": "Leigh Bardugo",
+        "isbn": "1250751365",
+        "goodreads": "https://www.goodreads.com/book/show/43263680-ninth-house"
+      },
+      {
+        "title": "Hell Bent",
+        "author": "Leigh Bardugo",
+        "isbn": "1250313104",
+        "goodreads": "https://www.goodreads.com/book/show/60652997-hell-bent"
+      },
+      {
+        "title": "My Friends",
+        "author": "Fredrik Backman",
+        "isbn": "1982112824",
+        "goodreads": "https://www.goodreads.com/book/show/217163697-my-friends"
+      },
+      {
+        "title": "Atmosphere",
+        "author": "Taylor Jenkins Reid",
+        "isbn": "0593158717",
+        "goodreads": "https://www.goodreads.com/book/show/220817785-atmosphere"
+      },
+      {
+        "title": "Project Hail Mary",
+        "author": "Andy Weir",
+        "isbn": "0593135202",
+        "goodreads": "https://www.goodreads.com/book/show/54493401-project-hail-mary"
+      },
+      {
+        "title": "These Summer Storms",
+        "author": "Sarah MacLean",
+        "isbn": "0593972252",
+        "goodreads": "https://www.goodreads.com/book/show/220239075-these-summer-storms"
+      },
+      {
+        "title": "The Other Valley",
+        "author": "Scott Alexander Howard",
+        "isbn": "1668015471",
+        "goodreads": "https://www.goodreads.com/book/show/176450755-the-other-valley"
+      },
+      {
+        "title": "The Will of the Many",
+        "author": "James Islington",
+        "isbn": "1982141190",
+        "goodreads": "https://www.goodreads.com/book/show/58416952-the-will-of-the-many"
+      },
+      {
+        "title": "Spectacular Things",
+        "author": "Beck Dorey-Stein",
+        "isbn": "0593446283",
+        "goodreads": "https://www.goodreads.com/book/show/221251808-spectacular-things"
+      },
+      {
+        "title": "Gone Girl",
+        "author": "Gillian Flynn",
+        "isbn": "0307588378",
+        "goodreads": "https://www.goodreads.com/book/show/19288043-gone-girl"
+      },
+      {
+        "title": "Alchemy of Secrets",
+        "author": "Stephanie Garber",
+        "isbn": "125078915X",
+        "goodreads": "https://www.goodreads.com/book/show/222706197-alchemy-of-secrets"
+      },
+      {
+        "title": "Anxious People",
+        "author": "Fredrik Backman",
+        "isbn": "1501160834",
+        "goodreads": "https://www.goodreads.com/book/show/49127718-anxious-people"
+      },
+      {
+        "title": "Gone Before Goodbye",
+        "author": "Harlan Coben and Reese Witherspoon",
+        "isbn": "9781538774700",
+        "goodreads": "https://www.goodreads.com/book/show/219385951-gone-before-goodbye"
+      },
+      {
+        "title": "The Compound",
+        "author": "Aisling Rawle",
+        "isbn": "0593977297",
+        "goodreads": "https://www.goodreads.com/book/show/218517021-the-compound"
+      },
+      {
+        "title": "The Rooster Bar",
+        "author": "John Grisham",
+        "isbn": "0385541171",
+        "goodreads": "https://www.goodreads.com/book/show/34201164-the-rooster-bar"
+      },
+      {
+        "title": "The Widow",
+        "author": "John Grisham",
+        "isbn": "0385548982",
+        "goodreads": "https://www.goodreads.com/book/show/229004506-the-widow"
+      },
+      {
+        "title": "Great Big Beautiful Life",
+        "author": "Emily Henry",
+        "isbn": "059344129X",
+        "goodreads": "https://www.goodreads.com/book/show/218559595-great-big-beautiful-life"
+      },
+      {
+        "title": "Bury Our Bones in the Midnight Soil",
+        "author": "V.E. Schwab",
+        "isbn": "1035064642",
+        "goodreads": "https://www.goodreads.com/book/show/215020997-bury-our-bones-in-the-midnight-soil"
+      },
+      {
+        "title": "The Book of Lost Hours",
+        "author": "Hayley Gelfuso",
+        "isbn": "1668076349",
+        "goodreads": "https://www.goodreads.com/book/show/220161572-the-book-of-lost-hours"
+      },
+      {
+        "title": "The Racketeer",
+        "author": "John Grisham",
+        "isbn": "9780385535144",
+        "goodreads": "https://www.goodreads.com/book/show/13573236-the-racketeer"
       }
     ]
   },
