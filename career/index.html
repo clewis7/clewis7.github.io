@@ -27,7 +27,364 @@
     <!-- ===== /HEADER ===== -->
 
     <main class="shell" id="main">
-      <p>Page content goes here.</p>
+      <p class="eyebrow">Curriculum vitae</p>
+      <h1 class="page-title">Caitlin Lewis</h1>
+
+      <div class="cv-head">
+        <p class="cv-head__sub">
+          PhD Candidate &middot; Electrical &amp; Computer Engineering &middot;
+          Duke University<br />
+          Research Software Engineer &middot; Durham, NC
+        </p>
+      </div>
+
+      <!-- ── Skills ─────────────────────────────────────────── -->
+      <section class="cv-section">
+        <h2 class="cv-section__title">Core skills</h2>
+        <dl class="skills">
+          <div>
+            <dt>Visualization</dt>
+            <dd>
+              fastplotlib &middot; wgpu &middot; pygfx &middot; real-time
+              rendering
+            </dd>
+          </div>
+          <div>
+            <dt>Machine learning</dt>
+            <dd>
+              PyTorch &middot; scikit-learn &middot; mechanistic
+              interpretability
+            </dd>
+          </div>
+          <div>
+            <dt>Languages</dt>
+            <dd>Python &middot; C/C++ &middot; Java &middot; SQL &middot; R</dd>
+          </div>
+          <div>
+            <dt>Programming</dt>
+            <dd>
+              git &middot; CI/CD &middot; open-source dev &middot; code review
+              &middot; linux for scientific computing
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ── Education ──────────────────────────────────────── -->
+      <section class="cv-section">
+        <h2 class="cv-section__title">Education</h2>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2024 &ndash;<br />present</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              PhD &middot; Electrical &amp; Computer Engineering
+            </h3>
+            <p class="cv-entry__org">Duke University</p>
+            <p class="cv-entry__meta">Durham, NC</p>
+            <!-- <p class="cv-entry__desc">
+              GPU-resident visualization for mechanistic interpretability.
+            </p> -->
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2020 &ndash;<br />2024</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              B.S. &middot; Computer Science, Statistics &amp; Analytics
+            </h3>
+            <p class="cv-entry__org">
+              University of North Carolina at Chapel Hill
+            </p>
+            <p class="cv-entry__meta">Chapel Hill, NC</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Experience ─────────────────────────────────────── -->
+      <section class="cv-section">
+        <h2 class="cv-section__title">Experience</h2>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">Summer 2023</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">Summer Pre-Doctoral Researcher</h3>
+            <p class="cv-entry__org">
+              Flatiron Institute &middot; Center for Computational Neuroscience
+            </p>
+            <p class="cv-entry__meta">New York, NY</p>
+            <ul class="tags">
+              <li>NeMoS</li>
+              <li>Open source</li>
+              <li>neuro viz</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">May 2022 &ndash;<br />May 2024</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">Research Assistant</h3>
+            <p class="cv-entry__org">Hantman Lab, UNC Chapel Hill</p>
+            <p class="cv-entry__meta">Chapel Hill, NC</p>
+            <ul class="tags">
+              <li>calcium imaging analysis</li>
+              <li>mesmerize-core</li>
+              <li>animal-soup</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Open source ────────────────────────────────────── -->
+      <section class="cv-section">
+        <h2 class="cv-section__title">Open source</h2>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2023 &ndash;<br />present</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">Core developer &middot; fastplotlib</h3>
+            <p class="cv-entry__desc">
+              GPU-accelerated scientific plotting built on pygfx rendering
+              engine.
+            </p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">Summer 2023</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">Author &middot; animal-soup</h3>
+            <p class="cv-entry__desc">
+              High-level API for automated behavioral classification of the
+              Hantman Lab reach-to-grab task in mouse models.
+            </p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2022 &ndash;<br />2023</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">Contributor &middot; mesmerize-core</h3>
+            <p class="cv-entry__desc">
+              High-level API for calcium imaging analysis using CaImAn, enabling
+              hyperparameter optimization.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Awards ─────────────────────────────────────────── -->
+      <section class="cv-section">
+        <h2 class="cv-section__title">Awards &amp; fellowships</h2>
+        <ul class="awards">
+          <li>
+            <span class="awards__star" aria-hidden="true">&#9733;</span>
+            <span class="awards__name">NSF Graduate Research Fellowship</span>
+            <span class="awards__when">2025</span>
+          </li>
+          <li>
+            <span class="awards__star" aria-hidden="true">&#9733;</span>
+            <span class="awards__name"
+              >Duke Pratt-Gardner Graduate Fellowship</span
+            >
+            <span class="awards__when">2024</span>
+          </li>
+          <li>
+            <span class="awards__star" aria-hidden="true">&#9733;</span>
+            <span class="awards__name"
+              >UNC Summer Undergraduate Research Fellowship</span
+            >
+            <span class="awards__when">2023</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ── Talks ──────────────────────────────────────────── -->
+      <section class="cv-section">
+        <h2 class="cv-section__title">Talks</h2>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2026</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              fastplotlib for neuroscience: building large-scale interactive
+              scientific visualization
+            </h3>
+            <p class="cv-entry__org">Duke Neurobiology Student Seminar</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2025</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              fastplotlib: Driving scientific discovery through data
+              visualization
+            </h3>
+            <p class="cv-entry__org">PyData Global</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2025</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              fastplotlib: Driving scientific discovery through data
+              visualization
+            </h3>
+            <p class="cv-entry__org">PyData Boston</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">Jan<br />2025</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              fastplotlib: Driving scientific discovery through data
+              visualization
+            </h3>
+            <p class="cv-entry__org">Rockefeller University</p>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2023</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              Ultra-fast visualization of large datasets using modern graphics
+              APIs in Jupyter notebooks
+            </h3>
+            <p class="cv-entry__org">SciPy</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Teaching ───────────────────────────────────────── -->
+      <section class="cv-section">
+        <h2 class="cv-section__title">Teaching</h2>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2025</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              Instructor &middot; CCN Software Workshop
+            </h3>
+            <p class="cv-entry__org">
+              Flatiron Institute &middot; Center for Computational Neuroscience
+            </p>
+            <ul class="tags">
+              <li>pynapple</li>
+              <li>nemos</li>
+              <li>fastplotlib</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2024</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              Instructor &middot; Mastering Neural Data Analysis, Visualization,
+              and Modeling with Pynapple, Fastplotlib, and Nemos
+            </h3>
+            <p class="cv-entry__org">FENS Forum</p>
+            <ul class="tags">
+              <li>fastplotlib</li>
+              <li>pynapple</li>
+              <li>nemos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2023</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              Instructor &middot; Calcium &amp; Voltage Imaging Analysis using
+              CaImAn
+            </h3>
+            <p class="cv-entry__org">Society for Neuroscience (SfN)</p>
+            <ul class="tags">
+              <li>CaImAn</li>
+              <li>Mesmerize</li>
+              <li>fastplotlib</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2023</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              Instructor &middot; Neuroimaging and Data Analysis
+            </h3>
+            <p class="cv-entry__org">LINdoscope</p>
+            <ul class="tags">
+              <li>Mesmerize</li>
+              <li>CaImAn</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">2023</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">
+              Instructor &middot; Workshop on Calcium &amp; Voltage Imaging
+              Analysis
+            </h3>
+            <p class="cv-entry__org">
+              Flatiron Institute, Center for Computational Neuroscience
+            </p>
+            <ul class="tags">
+              <li>fastplotlib</li>
+              <li>calcium imaging</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <p class="cv-entry__date">Fall<br />2022</p>
+          <div class="cv-entry__body">
+            <h3 class="cv-entry__role">Undergraduate Learning Assistant</h3>
+            <p class="cv-entry__org">
+              University of North Carolina at Chapel Hill
+            </p>
+            <ul class="tags">
+              <li>Java</li>
+              <li>Software engineering</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Publications ───────────────────────────────────── -->
+      <section class="cv-section">
+        <h2 class="cv-section__title">Publications</h2>
+
+        <div class="pub">
+          <p class="pub__venue">Optica 2025</p>
+          <div>
+            <h3 class="pub__title">
+              <a
+                href="https://doi.org/10.1364/OPTICA.549707"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                High-speed 4D fluorescence light field tomography of whole
+                freely moving organisms
+              </a>
+            </h3>
+            <p class="pub__authors">
+              K. Zhou, C. Cook, A. Chakraborty, J. Bagwell, J. Jönsson, K. Lee,
+              X. Yang, S. Xu, R. Balla, K. Kolar, <strong>C. Lewis</strong>, M.
+              Harfouche, D. Fox, M. Bagnat, R. Horstmeyer
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- ===== FOOTER  ===== -->
