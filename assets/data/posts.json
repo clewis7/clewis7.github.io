@@ -1,0 +1,8 @@
+[
+  {
+    "slug": "pytorch-wgpu",
+    "title": "No host round trip PyTorch compute and viz",
+    "description": "Getting CUDA and wgpu to agree on a buffer, and what nsys had to say about it.",
+    "date": "2026-08-25"
+  }
+]

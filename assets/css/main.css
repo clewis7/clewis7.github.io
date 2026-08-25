@@ -859,3 +859,142 @@ a:hover {
   margin: 0;
   font-size: 0.95rem;
 }
+
+/* ============================================================
+   Research posts
+   ============================================================ */
+.research__lede {
+  max-width: 34rem;
+  margin: 0 0 3.5rem;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 2.3vw, 1.45rem);
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+
+.post-card {
+  display: grid;
+  gap: 0.3rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+  transition: padding-left 0.2s ease;
+}
+
+.post-card:hover,
+.post-card:focus-visible {
+  padding-left: 0.9rem;
+}
+
+/* Teal rule slides in on hover */
+.post-card {
+  position: relative;
+}
+
+.post-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.6rem;
+  bottom: 1.6rem;
+  width: 2px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.post-card:hover::before,
+.post-card:focus-visible::before {
+  opacity: 1;
+}
+
+.post-card__date {
+  order: -1;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.post-card__title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.6vw, 1.5rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.post-card:hover .post-card__title {
+  color: var(--spark);
+}
+
+.post-card__desc {
+  max-width: 42rem;
+  margin: 0.15rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.posts__status {
+  padding: 1.5rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   Research post
+   ============================================================ */
+.post-head {
+  max-width: 65rem;
+  margin: 0 0 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.post-head__date {
+  margin: 0 0 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.post-head__title {
+  margin: 0 0 0.9rem;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.post-head__desc {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+.post-head .tags {
+  margin-top: 1.4rem;
+}
