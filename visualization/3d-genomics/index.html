@@ -39,10 +39,10 @@
         available from 10x Genomics — clustered in Seurat, rendered on the GPU.
       </p>
 
-      <!-- <figure class="viz-detail__media">
+      <figure class="viz-detail__media">
         <video
-          src="/assets/video/zero-copy-tensors.mp4"
-          poster="/assets/img/viz/zero-copy-tensors.jpg"
+          src="/assets/video/seurat.mp4"
+          poster="/assets/img/seurat.jpg"
           autoplay
           muted
           loop
@@ -50,65 +50,9 @@
           preload="metadata"
         ></video>
         <figcaption>
-          Live activation view during a nanoGPT training run on Shakespeare.
-        </figcaption>
-      </figure> -->
-
-      <figure class="viz-detail__media">
-        <div class="media-placeholder">
-          <span>Video coming soon</span>
-        </div>
-        <figcaption>
           3D UMAP of 1.3 million cells, colored by Seurat cluster assignment
         </figcaption>
       </figure>
-
-      <!-- <div class="prose">
-        <h2>The problem</h2>
-        <p>
-          Single-cell RNA sequencing routinely produces datasets with over a
-          million cells. The standard analysis pipeline handles this fine —
-          Seurat clusters the cells, computes an embedding, and hands back
-          coordinates. The trouble starts when you want to look at the result.
-        </p>
-
-        <h2>How it works</h2>
-        <p>
-          The embedding is computed in R with Seurat, then exported as
-          coordinates and cluster labels. fastplotlib uploads those to the GPU
-          once as a single buffer and renders them as a point cloud through
-          wgpu. The key difference is that the data stays on the device.
-          Rotating the camera doesn't re-send 1.3 million points — it updates a
-          transform matrix, and the GPU redraws from memory it already holds.
-          Colors work the same way: switching from cluster assignment to gene
-          expression swaps a buffer rather than rebuilding the plot.
-        </p>
-
-        <h2>What you're seeing</h2>
-        <p>
-          Walk through the recording &mdash; what each panel shows, what changes
-          as training progresses.
-        </p>
-      </div> -->
-
-      <!-- <dl class="viz-detail__meta">
-        <div>
-          <dt>Built with</dt>
-          <dd>fastplotlib, pygfx, wgpu, PyTorch</dd>
-        </div>
-        <div>
-          <dt>Source</dt>
-          <dd>
-            <a
-              href="https://github.com/clewis7/branchpoint"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              github.com/clewis7/branchpoint
-            </a>
-          </dd>
-        </div>
-      </dl> -->
     </main>
 
     <script src="/assets/js/viz.js" defer></script>

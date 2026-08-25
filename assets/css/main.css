@@ -826,45 +826,6 @@ a:hover {
   color: var(--muted);
 }
 
-/* ---- Prose ----------------------------------------------- */
-.prose {
-  max-width: 38rem;
-}
-
-.prose h2 {
-  margin: 2.25rem 0 0.6rem;
-  font-family: var(--mono);
-  font-size: 0.76rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.prose h2:first-child {
-  margin-top: 0;
-}
-
-.prose p {
-  margin: 0 0 1.1rem;
-}
-
-.prose pre {
-  overflow-x: auto;
-  padding: 1rem;
-  border-radius: 4px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  line-height: 1.5;
-}
-
-.prose code {
-  font-family: var(--mono);
-  font-size: 0.88em;
-}
-
 /* ---- Meta table ------------------------------------------ */
 .viz-detail__meta {
   max-width: 38rem;
@@ -897,18 +858,4 @@ a:hover {
 .viz-detail__meta dd {
   margin: 0;
   font-size: 0.95rem;
-}
-
-.media-placeholder {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 16 / 9;
-  border-radius: 4px;
-  border: 1px dashed var(--line);
-  background: color-mix(in srgb, var(--accent) 4%, var(--card));
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
 }

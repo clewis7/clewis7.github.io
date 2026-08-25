@@ -3,14 +3,14 @@
     "slug": "spike-raster",
     "title": "Real-time spike raster",
     "blurb": "Streaming Neuropixels data plotted live during acquisition at full frame rate",
-    "video": "/assets/img/viz/spike-raster.gif",
+    "image": "/assets/img/spike.jpg",
     "tags": ["neuropixels", "real-time", "ephys"]
   },
   {
     "slug": "3d-genomics",
     "title": "Single cell genomics",
     "blurb": "UMAP on 1.3 million cell dataset of a developing mouse brain",
-    "video": "/assets/img/viz/spike-raster.gif",
+    "image": "/assets/img/seurat.jpg",
     "tags": ["RNA sequencing", "genomics"]
   }
 ]
