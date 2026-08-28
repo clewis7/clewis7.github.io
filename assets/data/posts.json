@@ -8,7 +8,7 @@
   {
     "slug": "flow-match",
     "title": "Interactive visualization for flow matching",
-    "description": "bah.",
+    "description": "Two interactive visualizations of what a flow matching model is actually doing — why its trajectories bend, and what rectification does about it.",
     "date": "2026-08-28"
   }
 ]

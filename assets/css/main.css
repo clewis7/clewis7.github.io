@@ -999,7 +999,6 @@ a:hover {
   margin-top: 1.4rem;
 }
 
-
 /* ============================================================
    Prose — long-form post body
    ============================================================ */
@@ -1175,8 +1174,7 @@ a:hover {
 
 .prose td {
   padding: 0.55rem 0.7rem 0.55rem 0;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--line) 55%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
 }
 
 /* ---- Emphasis -------------------------------------------- */
