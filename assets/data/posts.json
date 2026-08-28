@@ -4,5 +4,11 @@
     "title": "No host round trip PyTorch compute and viz",
     "description": "Getting CUDA and wgpu to agree on a buffer, and what nsys had to say about it.",
     "date": "2026-08-25"
+  },
+  {
+    "slug": "flow-match",
+    "title": "Interactive visualization for flow matching",
+    "description": "Two interactive visualizations of what a flow matching model is actually doing — why its trajectories bend, and what rectification does about it.",
+    "date": "2026-08-28"
   }
 ]
