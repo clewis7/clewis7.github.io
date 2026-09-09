@@ -410,7 +410,7 @@
               </li>
             </ul>
 
-            <aside class="side-note">
+            <div class="side-note">
               <p>
                 <strong>PyTorch CUDA Caching Allocator:</strong>
                 <code>cudaMalloc</code>/<code>cudaFree</code> are expensive
@@ -418,7 +418,7 @@
                 from them, recycling aggressively to reduce the number of driver
                 calls.
               </p>
-            </aside>
+            </div>
 
             <b>Why not just export the memory?</b>
 
@@ -488,14 +488,14 @@
               </li>
             </ul>
 
-            <aside class="side-note">
+            <div class="side-note">
               <p>
                 This is coarse synchronization: the CPU is the middleman, so the
                 host thread briefly blocks even though both parties are on the
                 GPU. There may be better ways to handle this completely on the
                 GPU.
               </p>
-            </aside>
+            </div>
           </div>
         </div>
       </section>
