@@ -89,9 +89,11 @@
 
         <h2>The solution</h2>
         <p>
-          One GPU, two APIs. PyTorch computes through CUDA on NVIDIA GPU cards;
-          the renderer draws through Vulkan. They can't see each other's memory,
-          but they can be made to share a single allocation. With this
+          One GPU, two APIs. PyTorch computes through CUDA on NVIDIA cards; the
+          renderer draws through Vulkan.
+          <a class="apxref" id="ref-shared-memory" href="#apx-shared-memory"
+            >They can't see each other's memory</a
+          >, but they can be made to share a single allocation. With this
           framework, the tensor can reach the screen without ever leaving the
           card.
         </p>
@@ -115,25 +117,388 @@
         </p>
 
         <h3>Setup: creating a buffer that both APIs can address</h3>
-        <p>Body text.</p>
+        <p><i>Runs once per watched tensor.</i></p>
+
+        <ul>
+          <li>
+            <strong>Allocate an exportable buffer in Vulkan</strong> &mdash; a
+            patch to wgpu-native adding one entry point,
+            <code>wgpuDeviceCreateExportableBuffer</code>
+            <ul>
+              <li>
+                WebGPU is a portable API and exposes no way to export memory,
+                but wgpu ships deliberate escape hatches down to the raw Vulkan
+                device underneath
+              </li>
+              <li>
+                The buffer is marked shareable at creation, with a dedicated
+                allocation: one <code>VkDeviceMemory</code> for exactly one
+                buffer
+              </li>
+              <li>
+                It's then re-wrapped as an ordinary wgpu buffer so pygfx can
+                bind to it
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Export it as an opaque fd</strong> &mdash; the driver
+            registers the allocation with the kernel as a file descriptor
+          </li>
+          <li>
+            <strong>Import the fd into CUDA</strong> &mdash;
+            <code>cuImportExternalMemory</code>, then map it to a device pointer
+          </li>
+          <li>
+            <strong>Wrap the pointer as a torch tensor</strong> &mdash;
+            PyTorch's Python API can't wrap a raw device pointer, so it's
+            laundered through cupy's <code>UnownedMemory</code> (borrowing the
+            address, never owning it) and DLPack, a zero-copy exchange protocol
+            that hands torch a tensor whose storage points at that same address
+          </li>
+        </ul>
+
+        <p>
+          <b>The result:</b> one set of physical VRAM pages with two virtual
+          mappings. A <code>VkBuffer</code> in Vulkan's world, an
+          ordinary-looking CUDA tensor in PyTorch's.
+        </p>
 
         <h3>Update: propagating model changes to the viz</h3>
-        <p>Body text.</p>
+        <p>
+          <em>Two GPU operations per frame.</em>
+        </p>
+
+        <ul>
+          <li>
+            <strong>Copy the model tensor into the shared buffer</strong>
+            &mdash; one fused CUDA kernel does cast, contiguity gather, and
+            relocation in a single pass
+          </li>
+          <li>
+            <strong>Signal completion</strong> &mdash; the renderer needs to
+            know that the shared buffer update from CUDA has completed copying
+            before reading (<a class="apxref" id="ref-sync" href="#apx-sync"
+              >synchronization, RAW hazard</a
+            >)
+            <ul>
+              <li>
+                CUDA and Vulkan submit to independent hardware queues with no
+                shared scheduler; without this, the renderer can read a
+                half-written buffer
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Blit the buffer into the texture</strong>
+            <ul>
+              <li>
+                The blit converts linear layout of the shared buffer to the
+                tiled layout textures are sampled from
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Render</strong> &mdash; pygfx samples the texture and draws
+          </li>
+        </ul>
 
         <h3>Cleanup: freeing memory and references</h3>
-        <p>Body text.</p>
+        <ul>
+          <li>
+            <strong>Destroy CUDA references</strong>
+            <ul>
+              <li>
+                Drop the torch view and cupy wrappers that reference the shared
+                buffer
+              </li>
+              <li>Destroy the CUDA external memory mapping</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Destroy Vulkan references</strong>
+            <ul>
+              <li>
+                Destroy the <code>VkBuffer</code> (does not free the memory)
+              </li>
+              <li>Destroy the poll the device so in-flight work retires</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Free physical memory</strong>
+            <ul>
+              <li>
+                Free the actual physical pages of the shared buffer memory on
+                the GPU
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <figure>
+          <img
+            src="/assets/img/posts/no_host_pipeline.png"
+            alt="Diagram showing how no host RTT for PyTorch compute and viz works."
+            width="300"
+            height="400"
+          />
+          <figcaption>
+            The steps. How no host round trip for PyTorch compute and viz works.
+          </figcaption>
+        </figure>
 
         <h2>The results</h2>
-        <p>Body text.</p>
+        <p>
+          To find out what the shared path actually buys, I measured the full
+          trip &mdash; CUDA tensor to rendered wgpu texture — across three
+          implementations and six tensor sizes.
+        </p>
+
+        <h3>Three ways to get a tensor onto a texture</h3>
+
+        <ul>
+          <li>
+            <strong>shared memory</strong> &mdash; copy into the dual-mapped
+            buffer, then blit into a texture. Two device-side operations, zero
+            host bytes.
+          </li>
+          <li>
+            <strong>host (pinned)</strong> &mdash; device-to-host copy into a
+            persistent pinned buffer, then upload back to the GPU. Page-locked
+            memory lets the DMA engine read it directly, and the buffer is
+            allocated once and reused. This is what a careful implementation
+            looks like, and it's the fair comparison.
+          </li>
+          <li>
+            <strong>host (naive)</strong> &mdash;
+            <code>t.cpu().numpy()</code> every frame: a fresh pageable
+            allocation, which the driver must internally stage before it can
+            DMA. What most people actually do.
+          </li>
+        </ul>
+
+        <p>
+          All three end at the same destination &mdash; a real wgpu texture in
+          the format pygfx samples &mdash; and all three are synchronous by
+          construction, returning only when the pixels are ready.
+        </p>
+
+        <p>
+          Each cell is the median of 100 updates after 20 warmup iterations,
+          with conditions interleaved rather than run in blocks so thermal drift
+          on a laptop can't systematically favor whichever ran first.
+        </p>
+
+        <figure>
+          <img
+            src="/assets/img/posts/no_host_fig.png"
+            alt="Results of benchmark testing."
+          />
+          <figcaption>Benchmark testing results.</figcaption>
+        </figure>
+
+        <h3>Two regimes</h3>
+
+        <p>
+          Below about 1&nbsp;MB, both paths are dominated by fixed per-update
+          overhead &mdash; the data movement is microseconds either way. Every
+          update pays a constant cost regardless of size: wgpu-py buffer calls,
+          CUDA kernel launch, event sync scheduling, driver command submission.
+          The shared path's floor is ~0.2&nbsp;ms; the host path's is lower
+          (~0.09&nbsp;ms) because it makes fewer wgpu API calls and has no event
+          sync. So at 64&sup2; and 256&sup2;, the host round trip wins.
+        </p>
+
+        <p>
+          Above 1&nbsp;MB, data movement takes over, and the two paths stop
+          being comparable. The host path is capped by PCIe &mdash; roughly
+          4&nbsp;GB/s effective, crossed twice. The shared path capitalizes
+          using device-local bandwidth.
+        </p>
 
         <h2>Limitations</h2>
-        <p>Body text.</p>
 
-        <h1>Appendix</h1>
+        <p>
+          Everything above runs on Linux, on an NVIDIA GPU, with wgpu on its
+          Vulkan backend.
+        </p>
 
-        <h2>Why can't the renderer see PyTorch's memory?</h2>
-        <h3>Why not just export the memory?</h3>
+        <ul>
+          <li>
+            <strong>Vulkan</strong> &mdash; of wgpu's backends, Vulkan is the
+            one with external-memory extensions that CUDA knows how to import.
+            Metal and DX12 have their own sharing mechanisms and would each need
+            a separate implementation.
+          </li>
+
+          <li>
+            <strong>Linux</strong> &mdash; the handle type is OS-specific. Linux
+            passes memory between APIs as an opaque POSIX file descriptor;
+            Windows uses HANDLEs. The mechanism exists on both, but this patch
+            implements the fd variant. Windows support would require some small
+            changes.
+          </li>
+
+          <li>
+            <strong>NVIDIA</strong> &mdash; the importing side is CUDA. The
+            export side is vendor-neutral in principle, but AMD and Intel would
+            need HIP or oneAPI equivalents.
+          </li>
+        </ul>
+
+        <p>Two further caveats worth naming:</p>
+
+        <ul>
+          <li>
+            <strong>This process requires a patched wgpu-native.</strong> WebGPU
+            exposes no way to export memory, so the two entry points this
+            depends on don't exist upstream.
+          </li>
+
+          <li>
+            <strong>The synchronization is coarse.</strong> The CPU waits on a
+            CUDA event before the renderer submits, which works but puts the
+            host in the middle of a GPU-to-GPU handoff. See Appendix.
+          </li>
+        </ul>
       </article>
+
+      <hr />
+
+      <section class="appendix">
+        <h2 class="appendix__head">Appendix</h2>
+
+        <div class="apx" id="apx-shared-memory">
+          <p class="apx__label">A1</p>
+          <div class="apx__body">
+            <h3 class="apx__title">
+              Why can't the renderer see PyTorch's memory?
+            </h3>
+            <pre><code class="language-python">t = torch.rand(64, 64, device="cuda")</code></pre>
+
+            <ul>
+              <li>
+                Holds metadata (shape, strides, dtype) and a Storage reference
+              </li>
+              <li>
+                Storage &mdash; a typed window over a contiguous byte range
+                <ul>
+                  <li>
+                    NOT a fresh allocation, but a 512-byte-aligned
+                    <em>block</em> carved out of a pre-allocated
+                    <em>segment</em>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                A <b>block</b> has three properties, each fatal on its own:
+                <ul>
+                  <li>
+                    Its address is a virtual address in the CUDA context &mdash;
+                    meaningless to the renderer
+                  </li>
+                  <li>
+                    It's a slice of a larger allocation given by the CUDA
+                    caching allocator
+                  </li>
+                  <li>
+                    Its lifetime belongs to the allocator; when
+                    <code>t</code> dies the block is recycled into some future
+                    tensor (an external mapping could read the wrong tensor)
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            <aside class="side-note">
+              <p>
+                <strong>PyTorch CUDA Caching Allocator:</strong>
+                <code>cudaMalloc</code>/<code>cudaFree</code> are expensive
+                driver calls, so PyTorch grabs large segments and sub-allocates
+                from them, recycling aggressively to reduce the number of driver
+                calls.
+              </p>
+            </aside>
+
+            <b>Why not just export the memory?</b>
+
+            <ul>
+              <li>
+                Exporting the whole segment or a single block isn't an option:
+                <code>cudaMalloc</code> memory has no shareable handle and
+                cannot be given one post-allocation
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="apx" id="apx-sync">
+          <p class="apx__label">A2</p>
+          <div class="apx__body">
+            <h3 class="apx__title">Synchronization</h3>
+            <b>Problem</b>
+            <ul>
+              <li>
+                CUDA and wgpu submit to independent hardware queues with no
+                shared scheduler
+              </li>
+              <li>
+                Copying from CUDA to the shared buffer returns to Python
+                immediately, so the line finishing says nothing about whether
+                the bytes exist yet
+              </li>
+              <li>
+                RAW hazard if the renderer reads the shared buffer before CUDA
+                has finished copying into it
+              </li>
+            </ul>
+
+            <b>Solution</b>
+
+            <ul>
+              <li>
+                Record a <code>torch.cuda.Event</code> immediately after the
+                copy &mdash; a marker in the stream saying "the copy is behind
+                this point"
+                <ul>
+                  <li>
+                    Costs nothing and blocks nothing; recording is not waiting
+                  </li>
+                </ul>
+              </li>
+              <li>
+                On the renderer side, wait on that event before submitting the
+                blit
+                <ul>
+                  <li>
+                    Streams execute in order, so passing the marker proves the
+                    copy completed
+                  </li>
+                  <li>
+                    Only the visualization side ever waits &mdash; the model is
+                    never blocked
+                  </li>
+                </ul>
+              </li>
+              <li>
+                This is why emitting an event beats
+                <code>torch.cuda.synchronize()</code>, which waits for
+                <em>everything</em> queued on the device, including the rest of
+                the forward pass
+              </li>
+            </ul>
+
+            <aside class="side-note">
+              <p>
+                This is coarse synchronization: the CPU is the middleman, so the
+                host thread briefly blocks even though both parties are on the
+                GPU. There may be better ways to handle this completely on the
+                GPU.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- ===== FOOTER  ===== -->
