@@ -44,6 +44,7 @@
       mount.textContent = "";
       data
         .slice()
+        .filter((p) => !p.draft)
         .sort((a, b) => b.date.localeCompare(a.date))
         .forEach((p) => mount.append(card(p)));
     })

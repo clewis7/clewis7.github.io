@@ -52,30 +52,87 @@
 
       <article class="prose">
         <p>
-          Opening paragraph, no heading above it &mdash; the post title already
-          did that work.
+          PyTorch tensors live on the GPU. So do the buffers a renderer draws
+          from. Getting a tensor onto the screen, though, usually means a round
+          trip through system memory and back. This post is about getting rid of
+          that trip.
         </p>
 
         <h2>The problem</h2>
-        <p>Body text.</p>
+        <p>
+          Drawing a GPU tensor normally costs two PCIe transfers: down through
+          <code>.cpu()</code> and <code>.numpy()</code>, back up when the
+          plotting library uploads it to render. Two transfers for data that
+          never needed to move.
+        </p>
+
+        <figure>
+          <img
+            src="/assets/img/posts/host_rtt.png"
+            alt="Diagram showing a PyTorch storage buffer on the GPU copied down to host memory and back up to a renderer texture, crossing PCIe twice."
+            width="1240"
+            height="400"
+          />
+          <figcaption>
+            The standard path. Data already on the GPU is read back to host
+            memory and uploaded again to be drawn.
+          </figcaption>
+        </figure>
+
+        <p>
+          For small tensors the cost is negligible. But it scales with tensor
+          size &mdash; a 4096 &cross; 4096 attention matrix in fp32 is 64MB, so
+          a single redraw shuffles 128MB across the bus to display something
+          already sitting in GPU memory. And that's one frame. Visualizing
+          changes to a tensor means paying it again on every update.
+        </p>
 
         <h2>The solution</h2>
+        <p>
+          One GPU, two APIs. PyTorch computes through CUDA on NVIDIA GPU cards;
+          the renderer draws through Vulkan. They can't see each other's memory,
+          but they can be made to share a single allocation. With this
+          framework, the tensor can reach the screen without ever leaving the
+          card.
+        </p>
+
+        <figure>
+          <img
+            src="/assets/img/posts/no_host_rtt.png"
+            alt="Diagram showing a PyTorch storage buffer on the GPU copied down to shared buffer and then to a renderer texture, no host round trip."
+            width="1240"
+            height="400"
+          />
+          <figcaption>
+            The new path. Data already on the GPU stays on the GPU and is passed
+            to the renderer via an on-GPU shared buffer.
+          </figcaption>
+        </figure>
+
+        <p>
+          <b>Three phases:</b> a setup handshake that runs once, a two-operation
+          frame loop, and a teardown that cleans up.
+        </p>
+
+        <h3>Setup: creating a buffer that both APIs can address</h3>
         <p>Body text.</p>
 
-        <!-- <h3>Sharing the allocation</h3>
+        <h3>Update: propagating model changes to the viz</h3>
         <p>Body text.</p>
 
-        <h3>Getting both APIs to agree</h3>
+        <h3>Cleanup: freeing memory and references</h3>
         <p>Body text.</p>
-
-        <h3>Keeping it synchronized</h3>
-        <p>Body text.</p> -->
 
         <h2>The results</h2>
         <p>Body text.</p>
 
         <h2>Limitations</h2>
         <p>Body text.</p>
+
+        <h1>Appendix</h1>
+
+        <h2>Why can't the renderer see PyTorch's memory?</h2>
+        <h3>Why not just export the memory?</h3>
       </article>
     </main>
 

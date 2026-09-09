@@ -1003,7 +1003,7 @@ a:hover {
    Prose — long-form post body
    ============================================================ */
 .prose {
-  max-width: 38rem;
+  max-width: 48rem;
 }
 
 .prose > *:first-child {
