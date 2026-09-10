@@ -58,6 +58,21 @@
           that trip.
         </p>
 
+        <figure class="viz-detail__media">
+          <video
+            src="/assets/video/mnist.mp4"
+            controls
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
+          <figcaption>
+            MNIST CNN training visualized in real time. Activations go straight
+            from PyTorch tensors to GPU textures, never touching host memory.
+          </figcaption>
+        </figure>
+
         <h2>The problem</h2>
         <p>
           Drawing a GPU tensor normally costs two PCIe transfers: down through
@@ -90,7 +105,7 @@
         <h2>The solution</h2>
         <p>
           One GPU, two APIs. PyTorch computes through CUDA on NVIDIA cards; the
-          renderer draws through Vulkan.
+          pygfx renderer draws through Vulkan.
           <a class="apxref" id="ref-shared-memory" href="#apx-shared-memory"
             >They can't see each other's memory</a
           >, but they can be made to share a single allocation. With this
@@ -116,7 +131,7 @@
           frame loop, and a teardown that cleans up.
         </p>
 
-        <h3>Setup: creating a buffer that both APIs can address</h3>
+        <h3>1. Setup: creating a buffer that both APIs can address</h3>
         <p><i>Runs once per watched tensor.</i></p>
 
         <ul>
@@ -164,7 +179,7 @@
           ordinary-looking CUDA tensor in PyTorch's.
         </p>
 
-        <h3>Update: propagating model changes to the viz</h3>
+        <h3>2. Update: propagating model changes to the viz</h3>
         <p>
           <em>Two GPU operations per frame.</em>
         </p>
@@ -203,7 +218,7 @@
           </li>
         </ul>
 
-        <h3>Cleanup: freeing memory and references</h3>
+        <h3>3. Cleanup: freeing memory and references</h3>
         <ul>
           <li>
             <strong>Destroy CUDA references</strong>
@@ -250,7 +265,7 @@
         <h2>The results</h2>
         <p>
           To find out what the shared path actually buys, I measured the full
-          trip &mdash; CUDA tensor to rendered wgpu texture — across three
+          trip &mdash; CUDA tensor to rendered pygfx texture — across three
           implementations and six tensor sizes.
         </p>
 
@@ -267,7 +282,7 @@
             persistent pinned buffer, then upload back to the GPU. Page-locked
             memory lets the DMA engine read it directly, and the buffer is
             allocated once and reused. This is what a careful implementation
-            looks like, and it's the fair comparison.
+            looks like, used to provide a fair comparison.
           </li>
           <li>
             <strong>host (naive)</strong> &mdash;
