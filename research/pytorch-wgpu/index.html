@@ -191,9 +191,11 @@
             relocation in a single pass
           </li>
           <li>
-            <strong>Signal completion</strong> &mdash; the renderer needs to
-            know that the shared buffer update from CUDA has completed copying
-            before reading (<a class="apxref" id="ref-sync" href="#apx-sync"
+            <strong>Signal completion</strong> &mdash; the renderer must not
+            read the buffer until CUDA has finished writing it (<a
+              class="apxref"
+              id="ref-sync"
+              href="#apx-sync"
               >synchronization, RAW hazard</a
             >)
             <ul>
@@ -208,7 +210,7 @@
             <strong>Blit the buffer into the texture</strong>
             <ul>
               <li>
-                The blit converts linear layout of the shared buffer to the
+                The blit converts a linear layout of the shared buffer to the
                 tiled layout textures are sampled from
               </li>
             </ul>
@@ -236,7 +238,7 @@
               <li>
                 Destroy the <code>VkBuffer</code> (does not free the memory)
               </li>
-              <li>Destroy the poll the device so in-flight work retires</li>
+              <li>Poll the device so in-flight work retires</li>
             </ul>
           </li>
           <li>
@@ -282,13 +284,13 @@
             persistent pinned buffer, then upload back to the GPU. Page-locked
             memory lets the DMA engine read it directly, and the buffer is
             allocated once and reused. This is what a careful implementation
-            looks like, used to provide a fair comparison.
+            looks like, included so the comparison is fair.
           </li>
           <li>
             <strong>host (naive)</strong> &mdash;
             <code>t.cpu().numpy()</code> every frame: a fresh pageable
-            allocation, which the driver must internally stage before it can
-            DMA. What most people actually do.
+            allocation, which the driver must must stage through an internal
+            pinned buffer before it can DMA.
           </li>
         </ul>
 
@@ -315,7 +317,7 @@
         <h3>Two regimes</h3>
 
         <p>
-          Below about 1&nbsp;MB, both paths are dominated by fixed per-update
+          <b>&lt;1&nbsp;MB:</b> both paths are dominated by fixed per-update
           overhead &mdash; the data movement is microseconds either way. Every
           update pays a constant cost regardless of size: wgpu-py buffer calls,
           CUDA kernel launch, event sync scheduling, driver command submission.
@@ -325,11 +327,67 @@
         </p>
 
         <p>
-          Above 1&nbsp;MB, data movement takes over, and the two paths stop
+          <b>&ge;1&nbsp;MB:</b> data movement takes over, and the two paths stop
           being comparable. The host path is capped by PCIe &mdash; roughly
-          4&nbsp;GB/s effective, crossed twice. The shared path capitalizes
-          using device-local bandwidth.
+          4&nbsp;GB/s effective, crossed twice. The shared path uses
+          device-local bandwidth instead.
         </p>
+
+        <h3>What <code>nsys</code> has to say about it</h3>
+
+        <p>
+          The benchmark above isolates a single update. To see what that means
+          in practice, I profiled the training demo end to end.
+        </p>
+
+        <p>
+          Both runs train the same CNN (shown above) for 500 steps and update
+          the same 122 tiles per step. The only difference is how pixel data
+          reaches the texture.
+        </p>
+
+        <figure>
+          <img src="/assets/img/posts/host_rtt_nsys.png" alt="nsys-host" />
+          <figcaption>
+            CUDA memory operations over 500 training steps. Host round trip
+            path.
+          </figcaption>
+        </figure>
+
+        <p>
+          The naive version does what you'd expect: each tile is pulled to host
+          with <code>.cpu().numpy()</code>, handed to the plotting library, and
+          re-uploaded. That's 61,000 device-to-host copies — 122 tiles &cross;
+          500 steps exactly.
+        </p>
+
+        <figure>
+          <img src="/assets/img/posts/no_host_rtt_nsys.png" alt="nsys-shared" />
+          <figcaption>
+            CUDA memory operations over 500 training steps. No host round trip
+            path.
+          </figcaption>
+        </figure>
+
+        <p>
+          The zero-copy version has no device-to-host row at all. Not a smaller
+          number: the operation never happens.
+        </p>
+
+        <p>
+          The host-to-device row is identical in both, at 10 copies. Those are
+          the one-time dataset preload and model initialization, and they're a
+          useful control — same startup, same training, so the loop is the only
+          thing that differs.
+        </p>
+
+        <div class="side-note">
+          <p>
+            The host-pinned version is omitted here because this section is
+            about whether the copies happen at all, not how fast they are.
+            Pinned memory makes the round trip cheaper; it doesn't remove it.
+          </p>
+        </div>
 
         <h2>Limitations</h2>
 
@@ -350,8 +408,8 @@
             <strong>Linux</strong> &mdash; the handle type is OS-specific. Linux
             passes memory between APIs as an opaque POSIX file descriptor;
             Windows uses HANDLEs. The mechanism exists on both, but this patch
-            implements the fd variant. Windows support would require some small
-            changes.
+            implements the fd variant. Windows support would require
+            implementing the HANDLE variant.
           </li>
 
           <li>
