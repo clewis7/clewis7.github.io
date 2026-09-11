@@ -7,6 +7,13 @@
     "draft": false
   },
   {
+    "slug": "alpha-fold",
+    "title": "Inside AlphaFold's Pair Representation",
+    "description": "Interactive visualizations of AlphaFold's pair representation as it forms.",
+    "date": "2026-09-12",
+    "draft": false
+  },
+  {
     "slug": "flow-match",
     "title": "Interactive visualization for flow matching",
     "description": "Two interactive visualizations of what a flow matching model is actually doing.",
