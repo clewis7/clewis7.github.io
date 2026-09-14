@@ -89,7 +89,7 @@
           ></video>
           <figcaption>
             AlphaFold2 predicted structures rendered with fastplotlib.
-            <a class="apxref" id="apx-color-modes" href="#apx-color-modes"
+            <a class="apxref" id="apx-color" href="#apx-color-modes"
               >Color modes:</a
             >
             pLDDT confidence, secondary structure, sequence position.
@@ -128,6 +128,22 @@
         </p>
 
         <h2>Inside AlphaFold2</h2>
+
+        <p>
+          The structure at the top of this page is the last frame of a
+          computation. Before AlphaFold produced those coordinates, it spent 48
+          layers refining an internal object you never see: a matrix holding its
+          running belief about the relationship between every pair of residues
+          in the chain.
+        </p>
+
+        <p>
+          The two visualizations below help to elucidate the interals of the
+          AlphaFold2 model. The first lets you scrub through all the internal
+          states and watch the structure resolve. The second breaks a single
+          state apart into its individual channels and asks what each of them is
+          tracking.
+        </p>
 
         <h3>Co-evolution scrubber</h3>
         <h3>Pair-rep channel browser</h3>
@@ -170,7 +186,7 @@
       </section>
 
       <section class="refs" aria-labelledby="refs-head">
-        <h2 class="refs__head" id="refs-head">References</h2>
+        <h2 class="appendix__head">References</h2>
 
         <ol class="refs__list">
           <li id="cite-1">
