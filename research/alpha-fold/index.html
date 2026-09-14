@@ -49,7 +49,141 @@
         </ul>
       </header>
 
-      <article class="prose"></article>
+      <article class="prose">
+        <h2>Introduction</h2>
+        <h3>Proteins and folding</h3>
+        <p>
+          A protein is a chain. Twenty different building blocks called amino
+          acids, strung together in an order written in your DNA, typically a
+          few hundred long. Each link in the chain is a <b>residue</b>, numbered
+          from one end to the other.
+        </p>
+
+        <p>
+          But the chain doesn't stay a chain. It collapses into a specific,
+          reproducible three-dimensional shape, called a <b>fold</b>, and that
+          shape is what the protein actually is. The shape creates the pocket
+          that binds a drug, positions the reactive atoms that catalyze a
+          reaction, forms the surface that sticks to another protein. Change the
+          shape and you change the function &mdash; a single substitution in the
+          wrong position can destroy it entirely.
+        </p>
+
+        <p>
+          Protein sequences can be read very efficiently using high-throughput
+          DNA sequencing, which is why sequence databases hold hundreds of
+          millions of entries. Structures come from X-ray crystallography, NMR,
+          or cryo-electron microscopy, each of which has historically taken
+          months of work per protein. After fifty years, the Protein Data Bank
+          holds only a few hundred thousand.
+        </p>
+
+        <figure class="viz-detail__media">
+          <video
+            src="/assets/video/alpha-fold.mp4"
+            controls
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
+          <figcaption>
+            AlphaFold2 predicted structures rendered with fastplotlib.
+            <a class="apxref" id="apx-color-modes" href="#apx-color-modes"
+              >Color modes:</a
+            >
+            pLDDT confidence, secondary structure, sequence position.
+          </figcaption>
+        </figure>
+
+        <h3>AlphaFold2</h3>
+
+        <p>
+          AlphaFold 2<a class="citeref" id="ref-1" href="#cite-1">1</a> predicts
+          protein structure from the underlying sequence.
+        </p>
+
+        <p>
+          The core insight of the model isn't really about the sequence you hand
+          it. It's about that sequence's relatives.
+        </p>
+
+        <p>
+          The model first searches enormous databases for <b>homologs</b> of the
+          input protein, the same protein in other species diverged over
+          evolutionary time, and stacks them into an alignment. That alignment
+          carries hidden three-dimensional information: if two residues touch
+          each other in the folded structure, a mutation at one tends to be
+          compensated by a mutation at the other, so their positions co-vary
+          across evolutionary time.
+        </p>
+
+        <p>
+          AlphaFold turns those correlations into a running hypothesis about the
+          relationship between every pair of residues in the chain &mdash; a
+          large matrix it refines through 48 successive blocks, enforcing
+          geometric consistency along the way. Only at the very end does it
+          convert that hypothesis into actual atomic coordinates: the predicted
+          fold.
+        </p>
+
+        <h2>Inside AlphaFold2</h2>
+
+        <h3>Co-evolution scrubber</h3>
+        <h3>Pair-rep channel browser</h3>
+      </article>
+
+      <section class="appendix">
+        <h2 class="appendix__head">Appendix</h2>
+
+        <div class="apx" id="apx-color-modes">
+          <p class="apx__label">A1</p>
+          <div class="apx__body">
+            <h3 class="apx__title">Color Modes</h3>
+
+            <ul>
+              <li>
+                <strong>Confidence (pLDDT)</strong> — AlphaFold reports how much
+                it trusts each residue, 0 to 100, and this is the coloring the
+                AlphaFold Database uses. Dark blue is very high confidence,
+                light blue confident, yellow low, orange very low.
+                Low-confidence regions are worth paying attention to: they often
+                aren't modeling failures at all, but parts of the protein that
+                genuinely have no fixed shape.
+              </li>
+              <li>
+                <strong>Secondary structure</strong> — the local patterns the
+                backbone falls into. Helices in red, strands in yellow,
+                everything else in grey. This is a property of the fold rather
+                than of the prediction, so it's what you'd see coloring an
+                experimentally determined structure too.
+              </li>
+              <li>
+                <strong>Sequence position</strong> — blue at the start of the
+                chain running to red at the end. Useful for following the path
+                the chain takes through the fold, which is otherwise hard to
+                trace once it's folded up.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="refs" aria-labelledby="refs-head">
+        <h2 class="refs__head" id="refs-head">References</h2>
+
+        <ol class="refs__list">
+          <li id="cite-1">
+            Jumper, J., Evans, R., Pritzel, A., et al.
+            <a
+              href="https://doi.org/10.1038/s41586-021-03819-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Highly accurate protein structure prediction with AlphaFold</a
+            >. <em>Nature</em> <strong>596</strong>, 583&ndash;589 (2021).
+          </li>
+        </ol>
+      </section>
     </main>
 
     <!-- ===== FOOTER  ===== -->
