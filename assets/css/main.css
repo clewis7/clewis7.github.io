@@ -1298,3 +1298,62 @@ a:hover {
 .side-note dd {
   margin: 0;
 }
+
+/* ============================================================
+   References
+   ============================================================ */
+.citeref {
+  font-family: var(--mono);
+  font-size: 0.7em;
+  font-weight: 500;
+  color: var(--spark);
+  text-decoration: none;
+  vertical-align: 0.4em;
+  padding: 0 0.1em;
+  scroll-margin-top: 5rem;
+}
+
+.citeref::before {
+  content: "[";
+}
+
+.citeref::after {
+  content: "]";
+}
+
+.refs {
+  max-width: 42rem;
+  margin-top: 3rem;
+}
+
+.refs__head {
+  margin: 0 0 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.refs__list {
+  margin: 0;
+  padding-left: 1.4rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  padding: 1.4rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+  gap: 0.5rem 1.5rem;
+  scroll-margin-top: 5rem;
+}
+
+.refs__list li {
+  margin-bottom: 0.8rem;
+  scroll-margin-top: 5rem;
+}
+
+.refs__list li::marker {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  color: var(--spark);
+}
