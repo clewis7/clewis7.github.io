@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Viz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+
+  <body>
+    <!-- ===== HEADER  ===== -->
+    <header class="masthead">
+      <nav class="nav" id="sitenav" aria-label="Main">
+        <a href="/">Home</a>
+        <a href="/research/">Research</a>
+        <a href="/career/">Career</a>
+        <a href="/visualization/">Sci Viz</a>
+        <a href="/books/">Books</a>
+      </nav>
+    </header>
+    <!-- ===== /HEADER ===== -->
+
+    <main class="shell" id="main">
+      <a class="backlink" href="/visualization/">&larr; All visualizations</a>
+
+      <p class="eyebrow">
+        AlphaFold &middot; protein fold &middot; structural biology
+      </p>
+      <h1 class="page-title">
+        Predicted protein structure from sequence using AlphaFold
+        <a class="citeref" id="ref-1" href="#cite-1">1</a>
+      </h1>
+
+      <p class="viz-detail__lede">
+        Predicted 3D protein structures rendered with fastplotlib.
+      </p>
+
+      <figure class="viz-detail__media">
+        <video
+          src="/assets/video/alpha-fold.mp4"
+          poster="/assets/img/alpha-fold.jpg"
+          controls
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        ></video>
+        <figcaption>
+          AlphaFold2 predicted structures rendered with fastplotlib. Color
+          modes: pLDDT confidence, secondary structure, sequence position.
+        </figcaption>
+      </figure>
+
+      <div>
+        <h3>Color Modes</h3>
+
+        <ul>
+          <li>
+            <strong>Confidence (pLDDT)</strong> — AlphaFold reports how much it
+            trusts each residue, 0 to 100, and this is the coloring the
+            AlphaFold Database uses. Dark blue is very high confidence, light
+            blue confident, yellow low, orange very low. Low-confidence regions
+            are worth paying attention to: they often aren't modeling failures
+            at all, but parts of the protein that genuinely have no fixed shape.
+          </li>
+          <li>
+            <strong>Secondary structure</strong> — the local patterns the
+            backbone falls into. Helices in red, strands in yellow, everything
+            else in grey. This is a property of the fold rather than of the
+            prediction, so it's what you'd see coloring an experimentally
+            determined structure too.
+          </li>
+          <li>
+            <strong>Sequence position</strong> — blue at the start of the chain
+            running to red at the end. Useful for following the path the chain
+            takes through the fold, which is otherwise hard to trace once it's
+            folded up.
+          </li>
+        </ul>
+      </div>
+
+      <section class="refs" aria-labelledby="refs-head">
+        <h2 class="appendix__head">References</h2>
+
+        <ol class="refs__list">
+          <li id="cite-1">
+            Jumper, J., Evans, R., Pritzel, A., et al.
+            <a
+              href="https://doi.org/10.1038/s41586-021-03819-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Highly accurate protein structure prediction with AlphaFold</a
+            >. <em>Nature</em> <strong>596</strong>, 583&ndash;589 (2021).
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <script src="/assets/js/viz.js" defer></script>
+
+    <!-- ===== FOOTER  ===== -->
+    <footer class="footer">
+      <p class="footer__fine">
+        Copyright &copy; <span id="year">2026</span> Caitlin Lewis
+      </p>
+    </footer>
+    <!-- ===== /FOOTER ===== -->
+
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

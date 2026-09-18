@@ -12,5 +12,12 @@
     "blurb": "UMAP on 1.3 million cell dataset of a developing mouse brain",
     "image": "/assets/img/seurat.jpg",
     "tags": ["RNA sequencing", "genomics"]
+  },
+  {
+    "slug": "alpha-fold",
+    "title": "Protein structure from sequence",
+    "blurb": "Predicted 3D protein structure from sequence using AlphaFold2",
+    "image": "/assets/img/alpha-fold.jpg",
+    "tags": ["AlphaFold", "proteins"]
   }
 ]
